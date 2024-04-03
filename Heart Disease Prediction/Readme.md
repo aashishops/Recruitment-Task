@@ -14,7 +14,7 @@ This is a simple web application built with Streamlit as well as FastAPI that pr
 1. Clone the repository:
 
 ```bash
-git clone https://github.com/your-username/heart-disease-predictor.git
+git clone https://github.com/aashishops/Recruitment-Task.git
 ```
 
 2. Create a Database in Mongodb named Heart_Disease and collection named user_data
