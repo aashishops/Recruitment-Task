@@ -48,3 +48,7 @@ HTML/CSS/JavaScript: Frontend technologies for creating the user interface.
 MongoDB: NoSQL database used for storing user data and prediction results.
 Scikit-learn: Machine learning library used for training the prediction model.
 Joblib: Library used for saving and loading the trained model.
+
+## License
+
+This project is licensed under the MIT License. See the [LICENSE](https://github.com/aashishops/Recruitment-Task/blob/main/LICENSE) file for details.
