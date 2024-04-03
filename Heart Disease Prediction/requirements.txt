@@ -1,0 +1,5 @@
+fastapi==0.110.1
+joblib==1.2.0
+pandas==2.0.3
+pydantic==2.6.4
+pymongo==4.5.0
