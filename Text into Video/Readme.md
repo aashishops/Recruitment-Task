@@ -14,7 +14,7 @@ This Python script allows users to inject animated text into videos. It provides
 1. Clone this repository to your local machine:
 
     ```bash
-    git clone https://github.com/aashishops/Heart-Disease-Prediction-System.git
+    git clone https://github.com/aashishops/Recruitment-Task.git
     ```
 
 2. Navigate to the project directory:
