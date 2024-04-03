@@ -38,4 +38,4 @@ You can customize the text animations and parameters by modifying the `animate_t
 
 ## License
 
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
+This project is licensed under the MIT License. See the [LICENSE](https://github.com/aashishops/Recruitment-Task/blob/main/LICENSE) file for details.
