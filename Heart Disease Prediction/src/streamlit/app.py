@@ -1,12 +1,13 @@
+#import necessary modules
 import streamlit as st
 import pandas as pd
 from joblib import load
 from pymongo import MongoClient
 
-
+#load the model
 model = load(r'E:\Career\internship\recruitment task\model\random_forest_model.joblib')
 
-
+#connect to mongodb clien and connect to database
 client = MongoClient('mongodb://localhost:27017/')
 db = client['Heart_Disease']  
 collection = db['user_data']  
@@ -14,7 +15,7 @@ collection = db['user_data']
 
 st.title('Heart Disease Predictor')
 
-
+#to get the input from each user
 age = st.number_input('Age', min_value=0, max_value=150, value=50)
 sex = st.radio('Sex', ['Male', 'Female'])
 cp = st.radio('Chest Pain Type', ['Typical Angina', 'Atypical Angina', 'Non-Anginal Pain', 'Asymptomatic'])
@@ -31,12 +32,10 @@ thal = st.radio('Thalassemia', ['Normal', 'Fixed Defect', 'Reversible Defect'])
 
 
 if st.button('Predict'):
- 
+    #mapped the valuesaccordinly
     sex_binary = 1 if sex == 'Male' else 0
     fbs_binary = 1 if fbs == 'Yes' else 0
     exang_binary = 1 if exang == 'Yes' else 0
-
-   
     cp_mapping = {'Typical Angina': 0, 'Atypical Angina': 1, 'Non-Anginal Pain': 2, 'Asymptomatic': 3}
     cp_binary = cp_mapping[cp]
     restecg_mapping = {'Normal': 0, 'ST-T Wave Abnormality': 1, 'Probable or Definite Left Ventricular Hypertrophy': 2}
@@ -47,7 +46,7 @@ if st.button('Predict'):
     thal_binary = thal_mapping[thal]
 
 
-
+    #put them in a dictionary to convert them into dataframe for easy loading into model for prediction
     binary_data = pd.DataFrame({
         'age': [age],
         'sex': [sex_binary],
@@ -64,8 +63,10 @@ if st.button('Predict'):
         'thal': [thal_binary]
     })
     
+    #predicted from the userdata
     prediction = model.predict(binary_data)
 
+    #created a dataframe of user data to load into mongo db database for collection
     user_data = pd.DataFrame({
         'age': [age],
         'sex': [sex],
@@ -82,19 +83,22 @@ if st.button('Predict'):
         'thal': [thal],
     })
     
+    #converting datas into strings
     user_data.index = user_data.index.astype(str)
     user_data_dict = user_data.iloc[0].to_dict()
+    #converting binary prediction into positive/negative
     prediction_result = 'Positive' if prediction[0] == 1 else 'Negative'
     data_to_insert = {**user_data_dict, 'prediction': prediction_result}
-
+    #insert the data into mongodb database
     collection.insert_one(data_to_insert)
 
    
     st.write('### Prediction:')
+    #displaying the prediction
     if prediction[0] == 0:
         st.write('The patient is predicted negative for heart disease.')
     else:
         st.write('The patient is predicted positive for heart disease.')
 
-
+#closing mongodb client
 client.close()
