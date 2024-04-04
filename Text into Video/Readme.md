@@ -24,11 +24,14 @@ This Python script allows users to inject animated text into videos. It provides
     ```
 
 3. Change Arguments 
-- Change the arguments in the main function 
+- Change the arguments in the main function
+
 4. Run the Python script `main.py` 
     ```bash
     python main.py
     ```
+
+5. An example of [sample raw video](https://github.com/aashishops/Recruitment-Task/blob/main/Text%20into%20Video/video/video.mp4) is available [and output](https://github.com/aashishops/Recruitment-Task/blob/main/Text%20into%20Video/output/output.mp4)
 
  
 
